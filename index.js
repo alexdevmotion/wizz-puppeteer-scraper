@@ -21,7 +21,6 @@ const URL = 'https://wizzair.com/#/booking/select-flight/BVA/SOF/2020-08-05/null
       if (priceElement) {
         const priceElementText = priceElement.textContent.trim();
         const firstDigitIndex = priceElementText.search(/\d/);
-        console.log(priceElementText, firstDigitIndex);
         price = parseFloat(priceElementText.substring(firstDigitIndex));
         currency = priceElementText.substr(firstDigitIndex - 1, 1);
       }

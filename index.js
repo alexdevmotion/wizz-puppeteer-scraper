@@ -17,9 +17,18 @@ const URL = 'https://wizzair.com/#/booking/select-flight/BVA/SOF/2020-08-05/null
     const priceCards = document.querySelectorAll('.flight-select__flight-date-picker__day__info');
     return Array.from(priceCards).map(priceCard => {
       const priceElement = priceCard.querySelector('.flight-select__flight-date-picker__day__price');
+      let price, currency = null;
+      if (priceElement) {
+        const priceElementText = priceElement.textContent.trim();
+        const firstDigitIndex = priceElementText.search(/\d/);
+        console.log(priceElementText, firstDigitIndex);
+        price = parseFloat(priceElementText.substring(firstDigitIndex));
+        currency = priceElementText.substr(firstDigitIndex - 1, 1);
+      }
       return {
         date: priceCard.querySelector('.flight-select__flight-date-picker__day__number').textContent.trim(),
-        price: priceElement ? priceElement.textContent.trim() : null
+        price,
+        currency
       };
     });
   });

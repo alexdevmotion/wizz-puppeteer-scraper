@@ -1,0 +1,9 @@
+{
+  "name": "wizz-puppeteer-scraper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^5.2.1"
+  }
+}

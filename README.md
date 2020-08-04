@@ -1,6 +1,6 @@
 # Wizz air scraper
 
-A simple scraper that extracts the prices on all displayed dates from the Wizz air **Select flights** page.
+A simple scraper using puppeteer to extract the prices on all displayed dates from the Wizz air **Select flights** page.
 
 ## Setup
 

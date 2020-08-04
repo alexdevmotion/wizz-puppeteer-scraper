@@ -1,6 +1,5 @@
 const puppeteer = require('puppeteer');
-
-const URL = 'https://wizzair.com/#/booking/select-flight/BVA/SOF/2020-08-05/null/1/0/0/0/null';
+const url = process.argv[2];
 
 (async () => {
   const browser = await puppeteer.launch({
@@ -10,14 +9,14 @@ const URL = 'https://wizzair.com/#/booking/select-flight/BVA/SOF/2020-08-05/null
   });
   const page = await browser.newPage();
   await page.setViewport({width: 1366, height: 768});
-  await page.goto(URL);
-  await page.waitForSelector('.flight-select__flight-date-picker__day__info', {timeout: 100000});
+  await page.goto(url);
+  await page.waitForSelector('.flight-select__flight-date-picker__day__info', {timeout: 300000});
 
   const result = await page.evaluate(() => {
     const priceCards = document.querySelectorAll('.flight-select__flight-date-picker__day__info');
     return Array.from(priceCards).map(priceCard => {
       const priceElement = priceCard.querySelector('.flight-select__flight-date-picker__day__price');
-      let price, currency = null;
+      let price = null, currency = null;
       if (priceElement) {
         const priceElementText = priceElement.textContent.trim();
         const firstDigitIndex = priceElementText.search(/\d/);
